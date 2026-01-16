@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Curso de Emagrecimento — 7 Aulas</title>
+  <meta name="description" content="Página do curso de emagrecimento em 7 aulas com podcast, vídeo, slides e infográfico." />
+
+  <!--
+    ✅ COMO APONTAR OS ENDEREÇOS DOS ARQUIVOS
+    - Coloque seus arquivos em uma pasta na raiz do projeto (ex.: /conteudos)
+    - Ajuste BASE_DIR e/ou os caminhos em COURSE abaixo.
+    - Use caminhos relativos, por exemplo: "./conteudos/aula-1/podcast.m4a"
+  -->
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --bg2:#0f1730;
+      --card:#0f1b36cc;
+      --card2:#0c142bcc;
+      --text:#e8ecff;
+      --muted:#b6c0ffcc;
+      --line:#ffffff14;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --shadow2: 0 12px 30px rgba(0,0,0,.28);
+      --accent:#7c5cff;
+      --accent2:#25d0ff;
+      --good:#28d17c;
+      --warn:#ffcc66;
+
+      --radius: 18px;
+      --radius2: 14px;
+      --max: 1080px;
+
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    /* Light theme */
+    body.theme-light{
+      --bg: #f7f8ff;
+      --bg2:#eef1ff;
+      --card:#ffffffcc;
+      --card2:#ffffffcc;
+      --text:#12162b;
+      --muted:#4b5477cc;
+      --line:#0a133014;
+      --shadow: 0 18px 60px rgba(12, 20, 43, .12);
+      --shadow2: 0 12px 30px rgba(12, 20, 43, .10);
+      --accent:#6b5cff;
+      --accent2:#0ab7e6;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 12% 10%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(37,208,255,.25), transparent 60%),
+        radial-gradient(900px 500px at 60% 120%, rgba(40,209,124,.18), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      min-height:100vh;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 18px 36px; }
+
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,0));
+      border-bottom: 1px solid var(--line);
+    }
+    body.theme-light .topbar{
+      background: linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,0));
+    }
+
+    .topbar .wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 16px 18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .logo{
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow2);
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+    }
+    .logo svg{ filter: drop-shadow(0 6px 14px rgba(0,0,0,.25)); }
+    .titlebox{ min-width: 0; }
+    h1{
+      margin:0;
+      font-size: 16px;
+      letter-spacing: .2px;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sub{
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .btn{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: var(--shadow2);
+      cursor:pointer;
+      font-weight: 600;
+      font-size: 13px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+      user-select:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+      box-shadow: 0 16px 40px rgba(0,0,0,.25);
+      text-decoration:none;
+    }
+    body.theme-light .btn:hover{
+      box-shadow: 0 16px 40px rgba(12, 20, 43, .12);
+    }
+
+    .hero{
+      padding: 18px 0 10px;
+    }
+    .heroCard{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      overflow:hidden;
+      position:relative;
+    }
+    body.theme-light .heroCard{
+      background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65));
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(600px 220px at 20% 0%, rgba(124,92,255,.22), transparent 55%),
+        radial-gradient(600px 220px at 90% 10%, rgba(37,208,255,.14), transparent 55%);
+      pointer-events:none;
+      opacity:.95;
+    }
+    .heroInner{ position:relative; display:grid; gap: 10px; }
+    .hero h2{
+      margin:0;
+      font-size: 24px;
+      letter-spacing: .2px;
+      line-height: 1.15;
+    }
+    .hero p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 80ch;
+      font-size: 14px;
+    }
+
+    .quicknav{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .chip{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: var(--text);
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      box-shadow: var(--shadow2);
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    body.theme-light .chip{
+      background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65));
+    }
+    .chip:hover{
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+      text-decoration:none;
+    }
+    .dot{
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 8px 18px rgba(124,92,255,.25);
+    }
+
+    .content{
+      padding: 14px 0 6px;
+      display:grid;
+      gap: 12px;
+    }
+
+    .lesson{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+    }
+    body.theme-light .lesson{
+      background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.70));
+    }
+
+    .lessonHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 14px 14px 16px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .lhLeft{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width:0;
+    }
+    .badge{
+      width: 38px; height: 38px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      font-weight: 800;
+      background: linear-gradient(135deg, rgba(124,92,255,.24), rgba(37,208,255,.18));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow2);
+      flex: 0 0 auto;
+    }
+    .lhText{ min-width:0; }
+    .lessonTitle{
+      margin:0;
+      font-size: 15px;
+      letter-spacing:.2px;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+    .lessonMeta{
+      margin: 3px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+    .chev{
+      width: 38px; height: 38px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow2);
+      transition: transform .18s ease;
+      flex: 0 0 auto;
+    }
+    .lesson[open] .chev{ transform: rotate(180deg); }
+
+    /* details/summary reset */
+    details.lesson > summary{ list-style:none; }
+    details.lesson > summary::-webkit-details-marker{ display:none; }
+
+    .lessonBody{
+      border-top: 1px solid var(--line);
+      padding: 14px;
+      display:grid;
+      gap: 12px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+
+    .card{
+      grid-column: span 12;
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow2);
+      padding: 12px;
+      overflow:hidden;
+    }
+    body.theme-light .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65));
+    }
+
+    @media (min-width: 860px){
+      .card.span6{ grid-column: span 6; }
+    }
+
+    .cardTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .cardTitle{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width:0;
+    }
+    .icon{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(124,92,255,.18), rgba(37,208,255,.12));
+      flex: 0 0 auto;
+    }
+    .cardTitle h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.2px;
+      line-height:1.15;
+    }
+    .cardTitle p{
+      margin: 3px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+      max-width: 52ch;
+    }
+
+    .openLink{
+      font-size: 12px;
+      font-weight: 700;
+      padding: 9px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow2);
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    body.theme-light .openLink{
+      background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.72));
+    }
+    .openLink:hover{
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+      text-decoration:none;
+      transform: translateY(-1px);
+    }
+
+    .pathline{
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px dashed var(--line);
+      margin-top: 10px;
+      padding-top: 10px;
+      display:flex;
+      gap: 8px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    code.path{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+      padding: 2px 6px;
+      border-radius: 10px;
+      color: var(--text);
+    }
+    body.theme-light code.path{
+      background: rgba(12,20,43,.04);
+    }
+
+    .missing{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      padding: 10px;
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+    body.theme-light .missing{
+      background: rgba(12,20,43,.03);
+    }
+    .pill{
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,204,102,.18), rgba(255,255,255,.03));
+      color: var(--text);
+      flex: 0 0 auto;
+    }
+
+    audio, video, iframe{
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.25);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+    }
+    video{ aspect-ratio: 16/9; }
+    iframe{ height: 340px; }
+
+    img.infographic{
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      display:block;
+      cursor: zoom-in;
+      box-shadow: var(--shadow2);
+    }
+
+    footer{
+      margin-top: 18px;
+      padding: 24px 0 10px;
+      color: var(--muted);
+      text-align:center;
+      font-size: 13px;
+    }
+
+    /* Modal */
+    .modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 999;
+    }
+    body.theme-light .modal{
+      background: rgba(10, 19, 48, .35);
+    }
+    .modal.show{ display:flex; }
+    .modalInner{
+      max-width: min(1100px, 96vw);
+      max-height: min(92vh, 980px);
+      width: 100%;
+      border-radius: 20px;
+      overflow:hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      position:relative;
+    }
+    .modalTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px 12px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .modalTop strong{ font-size: 13px; }
+    .modalClose{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor:pointer;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .modalClose:hover{
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+    }
+    .modalContent{
+      padding: 12px;
+      overflow:auto;
+      max-height: calc(92vh - 54px);
+    }
+    .modalContent img{
+      width: 100%;
+      height: auto;
+      display:block;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      cursor: zoom-out;
+    }
+
+    /* Tiny helpers */
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand" aria-label="Cabeçalho do curso">
+        <div class="logo" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C13.8 5.4 17.5 7.7 21.8 8.2C20.1 12.9 16.4 17.2 12 22C7.6 17.2 3.9 12.9 2.2 8.2C6.5 7.7 10.2 5.4 12 2Z" fill="white" opacity=".9"/>
+          </svg>
+        </div>
+        <div class="titlebox">
+          <h1>Curso de Emagrecimento</h1>
+          <p class="sub">7 aulas • podcast • vídeo • slides • infográfico</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="toggleTheme" type="button" aria-label="Alternar tema">
+          <span aria-hidden="true">🌗</span>
+          <span>Tema</span>
+        </button>
+        <a class="btn" href="#aula-1" aria-label="Ir para a primeira aula">
+          <span aria-hidden="true">▶️</span>
+          <span>Começar</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="heroCard">
+        <div class="heroInner">
+          <h2>Bem-vindo(a)!</h2>
+          <p>
+            Aqui você encontra as <strong>7 aulas</strong> do curso, cada uma com <strong>podcast (m4a)</strong>,
+            <strong>vídeo (mp4)</strong>, <strong>slides (pdf)</strong> e <strong>infográfico (png)</strong>.
+            É só apontar os arquivos no bloco de configuração do HTML.
+          </p>
+
+          <nav class="quicknav" aria-label="Navegação rápida por aulas" id="quicknav"></nav>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="lessons" aria-label="Lista de aulas">
+      <!-- Aulas serão injetadas aqui via JS -->
+    </section>
+
+    <footer>
+      Feito com carinho.
+    </footer>
+  </main>
+
+  <!-- Modal para zoom do infográfico -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Visualizador de imagem">
+    <div class="modalInner">
+      <div class="modalTop">
+        <strong id="modalTitle">Infográfico</strong>
+        <button class="modalClose" id="modalClose" type="button" aria-label="Fechar">Fechar ✕</button>
+      </div>
+      <div class="modalContent" id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    /**************************************************************************
+     * CONFIGURAÇÃO DO CURSO (edite aqui)
+     **************************************************************************/
+    const BASE_DIR = "./conteudos"; // <- sua pasta na raiz do projeto (ajuste se quiser)
+
+    const COURSE = [
+      {
+        id: 1,
+        titulo: "Aula 1 — Introdução e objetivos",
+        podcast: `${BASE_DIR}/aula-1/podcast.m4a`,
+        video: `${BASE_DIR}/aula-1/video.mp4`,
+        slides: `${BASE_DIR}/aula-1/slides.pdf`,
+        infografico: `${BASE_DIR}/aula-1/infografico.png`,
+      },
+      {
+        id: 2,
+        titulo: "Aula 2 — Hábitos e consistência",
+        podcast: `${BASE_DIR}/aula-2/podcast.m4a`,
+        video: `${BASE_DIR}/aula-2/video.mp4`,
+        slides: `${BASE_DIR}/aula-2/slides.pdf`,
+        infografico: `${BASE_DIR}/aula-2/infografico.png`,
+      },
+      {
+        id: 3,
+        titulo: "Aula 3 — Alimentação inteligente",
+        podcast: `${BASE_DIR}/aula-3/podcast.m4a`,
+        video: `${BASE_DIR}/aula-3/video.mp4`,
+        slides: `${BASE_DIR}/aula-3/slides.pdf`,
+        infografico: `${BASE_DIR}/aula-3/infografico.png`,
+      },
+      {
+        id: 4,
+        titulo: "Aula 4 — Movimento e energia",
+        podcast: `${BASE_DIR}/aula-4/podcast.m4a`,
+        video: `${BASE_DIR}/aula-4/video.mp4`,
+        slides: `${BASE_DIR}/aula-4/slides.pdf`,
+        infografico: `${BASE_DIR}/aula-4/infografico.png`,
+      },
+      {
+        id: 5,
+        titulo: "Aula 5 — Rotina, sono e recuperação",
+        podcast: `${BASE_DIR}/aula-5/podcast.m4a`,
+        video: `${BASE_DIR}/aula-5/video.mp4`,
+        slides: `${BASE_DIR}/aula-5/slides.pdf`,
+        infografico: `${BASE_DIR}/aula-5/infografico.png`,
+      },
+      {
+        id: 6,
+        titulo: "Aula 6 — Estratégias práticas",
+        podcast: `${BASE_DIR}/aula-6/podcast.m4a`,
+        video: `${BASE_DIR}/aula-6/video.mp4`,
+        slides: `${BASE_DIR}/aula-6/slides.pdf`,
+        infografico: `${BASE_DIR}/aula-6/infografico.png`,
+      },
+      {
+        id: 7,
+        titulo: "Aula 7 — Plano e próximos passos",
+        podcast: `${BASE_DIR}/aula-7/podcast.m4a`,
+        video: `${BASE_DIR}/aula-7/video.mp4`,
+        slides: `${BASE_DIR}/aula-7/slides.pdf`,
+        infografico: `${BASE_DIR}/aula-7/infografico.png`,
+      },
+    ];
+
+    // Se você preferir "deixar vazio" e preencher depois, basta usar "" nos campos:
+    // podcast: "", video: "", slides: "", infografico: ""
+
+    /**************************************************************************
+     * Renderização
+     **************************************************************************/
+    const lessonsEl = document.getElementById("lessons");
+    const quicknavEl = document.getElementById("quicknav");
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function iconSvg(kind){
+      // Ícones simples inline (sem libs externas)
+      const common = `width="18" height="18" viewBox="0 0 24 24" fill="none"`;
+      if (kind === "audio") return `<svg ${common}><path d="M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+      if (kind === "video") return `<svg ${common}><path d="M4 7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" stroke="currentColor" stroke-width="2"/><path d="M17 10l3-2v8l-3-2v-4Z" fill="currentColor" opacity=".9"/></svg>`;
+      if (kind === "pdf") return `<svg ${common}><path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/><path d="M14 3v4a2 2 0 0 0 2 2h4" stroke="currentColor" stroke-width="2"/></svg>`;
+      if (kind === "image") return `<svg ${common}><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" stroke="currentColor" stroke-width="2"/><path d="M8 11a1.2 1.2 0 1 0 0-2.4A1.2 1.2 0 0 0 8 11Z" fill="currentColor" opacity=".9"/><path d="M21 16l-5-5-6 6-2-2-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+      return "";
+    }
+
+    function openHint(kind){
+      if (kind === "audio") return "Ouça o podcast (m4a)";
+      if (kind === "video") return "Assista ao vídeo (mp4)";
+      if (kind === "pdf") return "Abra os slides (pdf)";
+      if (kind === "image") return "Veja o infográfico (png)";
+      return "Abrir";
+    }
+
+    function resourceCard({ kind, title, subtitle, src, fileLabel, extraOpenBehavior }) {
+      const safeSrc = src ? escapeHtml(src) : "";
+      const hasSrc = Boolean(src && String(src).trim().length);
+
+      let body = "";
+      if (!hasSrc) {
+        body = `
+          <div class="missing" role="note" aria-label="Arquivo não definido">
+            <span class="pill">Pendente</span>
+            <div>
+              <div style="font-weight:800; color: var(--text); font-size: 13px; margin-bottom:2px;">Defina o caminho do arquivo</div>
+              <div style="font-size: 12px;">Edite <code class="path">COURSE</code> no script e aponte para seu <strong>${escapeHtml(fileLabel)}</strong>.</div>
+            </div>
+          </div>
+        `;
+      } else {
+        if (kind === "audio") {
+          body = `<audio controls preload="none" src="${safeSrc}"></audio>`;
+        } else if (kind === "video") {
+          body = `<video controls preload="metadata" playsinline src="${safeSrc}"></video>`;
+        } else if (kind === "pdf") {
+          // Alguns navegadores podem bloquear embed de PDF dependendo do ambiente; mantemos o link como fallback.
+          body = `<iframe title="Slides em PDF" src="${safeSrc}#view=FitH" loading="lazy"></iframe>`;
+        } else if (kind === "image") {
+          body = `<img class="infographic" src="${safeSrc}" alt="Infográfico da aula" loading="lazy" data-zoom-src="${safeSrc}" />`;
+        }
+      }
+
+      const openHref = hasSrc ? safeSrc : "#";
+      const openAttrs = hasSrc ? `href="${openHref}" target="_blank" rel="noopener"` : `href="javascript:void(0)" aria-disabled="true"`;
+      const openClick = extraOpenBehavior ? `data-open-behavior="${extraOpenBehavior}"` : "";
+
+      return `
+        <div class="card span6">
+          <div class="cardTop">
+            <div class="cardTitle">
+              <div class="icon" aria-hidden="true">${iconSvg(kind)}</div>
+              <div style="min-width:0;">
+                <h3>${escapeHtml(title)}</h3>
+                <p title="${escapeHtml(subtitle)}">${escapeHtml(subtitle)}</p>
+              </div>
+            </div>
+            <a class="openLink" ${openAttrs} ${openClick}>
+              <span aria-hidden="true">↗</span> Abrir
+            </a>
+          </div>
+
+          ${body}
+
+          <div class="pathline">
+            <span style="font-weight:800;">Arquivo:</span>
+            <code class="path">${hasSrc ? safeSrc : "(não definido)"}</code>
+          </div>
+        </div>
+      `;
+    }
+
+    function lessonTemplate(lesson){
+      const lessonId = `aula-${lesson.id}`;
+      const meta = "4 insumos: podcast • vídeo • slides • infográfico";
+
+      return `
+        <details class="lesson" id="${lessonId}" ${lesson.id === 1 ? "open" : ""}>
+          <summary class="lessonHeader" aria-controls="${lessonId}-body">
+            <div class="lhLeft">
+              <div class="badge" aria-hidden="true">${lesson.id}</div>
+              <div class="lhText">
+                <p class="lessonTitle">${escapeHtml(lesson.titulo)}</p>
+                <p class="lessonMeta">${meta}</p>
+              </div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </summary>
+
+          <div class="lessonBody" id="${lessonId}-body">
+            <div class="grid">
+              ${resourceCard({
+                kind: "audio",
+                title: "Podcast",
+                subtitle: "Áudio da aula (m4a)",
+                src: lesson.podcast,
+                fileLabel: "podcast.m4a"
+              })}
+              ${resourceCard({
+                kind: "video",
+                title: "Vídeo",
+                subtitle: "Aula em vídeo (mp4)",
+                src: lesson.video,
+                fileLabel: "video.mp4"
+              })}
+              ${resourceCard({
+                kind: "pdf",
+                title: "Slides",
+                subtitle: "Apresentação (pdf)",
+                src: lesson.slides,
+                fileLabel: "slides.pdf"
+              })}
+              ${resourceCard({
+                kind: "image",
+                title: "Infográfico",
+                subtitle: "Material visual (png)",
+                src: lesson.infografico,
+                fileLabel: "infografico.png",
+                extraOpenBehavior: "image"
+              })}
+            </div>
+          </div>
+        </details>
+      `;
+    }
+
+    function render(){
+      // Quicknav
+      quicknavEl.innerHTML = COURSE.map(l => `
+        <a class="chip" href="#aula-${l.id}" title="Ir para ${escapeHtml(l.titulo)}">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Aula ${l.id}</span>
+        </a>
+      `).join("");
+
+      // Lessons
+      lessonsEl.innerHTML = COURSE.map(lessonTemplate).join("");
+    }
+
+    render();
+
+    /**************************************************************************
+     * Zoom do infográfico (modal)
+     **************************************************************************/
+    const modal = document.getElementById("modal");
+    const modalClose = document.getElementById("modalClose");
+    const modalContent = document.getElementById("modalContent");
+    const modalTitle = document.getElementById("modalTitle");
+
+    function openModalWithImage(src, title){
+      modalTitle.textContent = title || "Infográfico";
+      modalContent.innerHTML = `<img src="${escapeHtml(src)}" alt="${escapeHtml(title || "Infográfico")}" />`;
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+      modalClose.focus();
+    }
+
+    function closeModal(){
+      modal.classList.remove("show");
+      modalContent.innerHTML = "";
+      document.body.style.overflow = "";
+    }
+
+    document.addEventListener("click", (e) => {
+      const img = e.target.closest("img.infographic");
+      if (img && img.dataset.zoomSrc){
+        const lesson = e.target.closest("details.lesson");
+        const lessonTitle = lesson ? lesson.querySelector(".lessonTitle")?.textContent : "Infográfico";
+        openModalWithImage(img.dataset.zoomSrc, lessonTitle);
+      }
+
+      // Se clicar no fundo do modal, fecha
+      if (e.target === modal) closeModal();
+    });
+
+    modalClose.addEventListener("click", closeModal);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("show")) closeModal();
+    });
+
+    /**************************************************************************
+     * Tema (dark/light)
+     **************************************************************************/
+    const toggleThemeBtn = document.getElementById("toggleTheme");
+    const THEME_KEY = "cursoTemaPreferido";
+
+    function applyTheme(theme){
+      document.body.classList.toggle("theme-light", theme === "light");
+      document.body.classList.toggle("theme-dark", theme === "dark");
+      try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+    }
+
+    function initTheme(){
+      let saved = null;
+      try { saved = localStorage.getItem(THEME_KEY); } catch (_) {}
+      if (saved === "light" || saved === "dark") {
+        applyTheme(saved);
+        return;
+      }
+      // padrão: dark, mas respeita preferência do sistema se quiser:
+      const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+      applyTheme(prefersLight ? "light" : "dark");
+    }
+
+    toggleThemeBtn.addEventListener("click", () => {
+      const isLight = document.body.classList.contains("theme-light");
+      applyTheme(isLight ? "dark" : "light");
+    });
+
+    initTheme();
+  </script>
+</body>
+</html>
